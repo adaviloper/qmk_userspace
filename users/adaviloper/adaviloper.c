@@ -1,4 +1,5 @@
 #include "adaviloper.h"
+#include <stdint.h>
 
 #include QMK_KEYBOARD_H
 
@@ -51,16 +52,13 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 persistent_default_layer_set(1UL<<_WINDOWS_ALT);
             }
             return false;
-        /* case LT_REP: */
-        /*     if (record->tap.count > 0) {  // Key is being tapped. */
-        /*         if (record->event.pressed) { */
-        /*             repeat_key_register(); */
-        /*         } else { */
-        /*             repeat_key_unregister(); */
-        /*         } */
-        /*         return false;  // Skip default handling. */
-        /*     } */
-        /*     return true;  // Continue default handling. */
+        case LT_REP:
+            if (record->tap.count && record->event.pressed) {
+                uint16_t last_key = get_last_keycode();
+                tap_code16(last_key);
+                return false;  // Skip default handling.
+            }
+            return true;  // Continue default handling.
 #ifdef ART_ENABLE
         case ART:
             if (record->event.pressed) {
