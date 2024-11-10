@@ -1,0 +1,2 @@
+COMB(ent_l_combo, KC_ENT, KC_C, KC_V)
+COMB(ent_r_combo, KC_ENT, KC_M, KC_COMMA)
