@@ -105,7 +105,7 @@
 #define _________________SYMBOL_R3_________________         DBL_CLN, KC_AT,   KC_LCBR, KC_RCBR, KC_QUES
 
 #define _________________SYSTEM_L0_________________         _______, _______, _______, _______, _______
-#define _________________SYSTEM_L1_________________         _______, OS_CTAB, OS_SPEC, OS_RFRS, _______
+#define _________________SYSTEM_L1_________________         _______, OS_CTAB, OS_SPEC, OS_RFRS, TD_TAB
 #define _________________SYSTEM_L2_________________         OS_ALL,  OS_SAVE, OS_URL,  OS_FIND, PR_TLE1
 #define _________________SYSTEM_L3_________________         OS_UNDO, OS_CUT,  OS_COPY, OS_PSTE, PR_TLE2
 
