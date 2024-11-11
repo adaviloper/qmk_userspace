@@ -12,10 +12,6 @@ ifeq ($(strip $(OLED_ENABLE)), yes)
   SRC += caps_mock.c
 endif
 
-ifdef ENCODER_ENABLE
-  SRC += encoders.c
-endif
-
 ifdef GIT_ENABLE
   SRC += git.c
 endif

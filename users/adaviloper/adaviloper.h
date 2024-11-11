@@ -10,15 +10,6 @@
 #include "vi_commands.h"
 // #include "repeat_keys.h"
 
-// #ifdef CASE_MODES_ENABLE
-//     #include "case_modes.h"
-//     #include "caps_mock.h"
-// #endif
-
-#ifdef ENCODER_ENABLE
-    #include "encoders.h"
-#endif
-
 #ifdef GIT_ENABLE
     #include "git.h"
 #endif
