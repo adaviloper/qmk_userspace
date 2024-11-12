@@ -22,4 +22,4 @@ endif
 
 SRC += os_commands.c
 SRC += vi_commands.c
-# SRC += repeat_keys.c
+SRC += repeat_keys.c

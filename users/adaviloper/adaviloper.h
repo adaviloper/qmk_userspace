@@ -8,7 +8,7 @@
 #include "tap_dance.h"
 #include "os_commands.h"
 #include "vi_commands.h"
-// #include "repeat_keys.h"
+#include "repeat_keys.h"
 
 #ifdef GIT_ENABLE
     #include "git.h"

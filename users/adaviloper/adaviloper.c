@@ -53,9 +53,12 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
         case LT_REP:
-            if (record->tap.count && record->event.pressed) {
-                uint16_t last_key = get_last_keycode();
-                tap_code16(last_key);
+            if (record->tap.count > 0) {  // Key is being tapped.
+                if (record->event.pressed) {
+                    repeat_key_register();
+                } else {
+                    repeat_key_unregister();
+                }
                 return false;  // Skip default handling.
             }
             return true;  // Continue default handling.
@@ -222,6 +225,6 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
     }
-    /* if (!process_repeat_key(keycode, record, RE_PEAT)) { return false; } */
+    if (!process_repeat_key(keycode, record, RE_PEAT)) { return false; }
     return true;
 }
