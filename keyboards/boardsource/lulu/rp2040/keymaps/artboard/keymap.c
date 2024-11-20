@@ -47,14 +47,16 @@
 
 enum lulu_keycodes {
     KC_MAKE = SAFE_RANGE,
+    TOOLS,
     EN_SWAP,
-    ART2,
-    MAC,
+    MOVE,
+    ADJUST
 };
 
 enum layers {
-    _BASE = 0,
-    _ART,
+    _TOOLS = 0,
+    _MOVEMENT,
+    _QWERTY,
     _ADJUST,
 };
 
