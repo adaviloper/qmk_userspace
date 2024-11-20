@@ -16,6 +16,7 @@
 #define TL_RULE KC_U // Ruler
 
 // Layer
+#define LY_NEW G(S(KC_N)) // Change layer name
 #define LY_NAME C(A(KC_G)) // Change layer name
 
 // Edit Menu
@@ -33,7 +34,7 @@
 #define TP_OINC G(KC_LBRC)
 #define TP_ODEC G(KC_RBRC)
 #define TP_CWHL G(S(KC_W))
-#define TP_CINT G(A(KC_W))
+#define TP_CINT C(A(KC_W))
 
 // Brush Palette
 #define BS_SINC KC_LBRC
@@ -54,7 +55,8 @@ enum lulu_keycodes {
     TOOLS,
     EN_SWAP,
     MOVE,
-    ADJUST
+    ADJUST,
+    NU_LAYR,
 };
 
 enum layers {
@@ -91,7 +93,7 @@ void increment_encoder_state(void) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_TOOLS] = LAYOUT_wrapper(
-        KC_ESC,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_ESC,  NU_LAYR, KC_F14,  KC_F15,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_LALT, TL_OPRL, KC_W,    TL_ERSE, TL_HAND, KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
         KC_LSFT, TP_CWHL, TL_SLCT, TL_MLYR, TL_PEN,  TL_FILL,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LCTL, TL_ZOOM, CLR_INV, CLR_TRN, TP_CINT, TL_BRSH, EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
@@ -110,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    TOOLS,
         _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
-                                   XXXXXXX, XXXXXXX, KC_SPC,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+        TOOLS,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
+                                   XXXXXXX, XXXXXXX, KC_ENT,  KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 
     [_ADJUST] = LAYOUT_wrapper(
@@ -141,6 +143,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MOVE:
             if (record->event.pressed) {
                 layer_move(_MOVEMENT);
+            }
+            return false;
+        case KC_ENT:
+            if (record->event.pressed && current_layer == _QWERTY) {
+                tap_code(KC_ENT);
+                layer_move(_TOOLS);
+            }
+            return false;
+        case NU_LAYR:
+            if (record->event.pressed) {
+                layer_move(_QWERTY);
+                tap_code16(LY_NEW);
+                tap_code16(LY_NAME);
             }
             return false;
         case KC_MAKE:
