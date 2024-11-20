@@ -32,6 +32,8 @@
 // Tool Property Palette
 #define TP_OINC G(KC_LBRC)
 #define TP_ODEC G(KC_RBRC)
+#define TP_CWHL G(S(KC_W))
+#define TP_CINT G(A(KC_W))
 
 // Brush Size Palette
 #define BS_INC KC_LBRC
@@ -88,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_TOOLS] = LAYOUT_wrapper(
         KC_ESC,  KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_LALT, TL_OPRL, KC_W,    TL_ERSE, TL_HAND, KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
-        KC_LSFT, KC_A,    TL_SLCT, TL_MLYR, TL_PEN,  TL_FILL,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LCTL, TL_ZOOM, CLR_INV, CLR_TRN, KC_V,    TL_BRSH, EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
+        KC_LSFT, TP_CWHL, TL_SLCT, TL_MLYR, TL_PEN,  TL_FILL,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LCTL, TL_ZOOM, CLR_INV, CLR_TRN, TP_CINT, TL_BRSH, EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
                                    ADJUST,  XXXXXXX, MOVE,    KC_SPC,    XXXXXXX, XXXXXXX, XXXXXXX, ADJUST
     ),
 
