@@ -67,6 +67,7 @@ enum encoder_state_t {
 };
 
 uint8_t current_layer = _TOOLS;
+
 enum encoder_state_t encoder_state = ENCODER_BRUSH_SIZE;
 
 enum encoder_state_t get_encoder_state(void) {
@@ -120,9 +121,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case TOOLS:
+            if (record->event.pressed) {
+                layer_move(_TOOLS);
+            }
+            return false;
+        case ADJUST:
+            if (record->event.pressed) {
+                layer_on(_ADJUST);
+            } else {
+                layer_off(_ADJUST);
+            }
+            return false;
+        case MOVE:
+            if (record->event.pressed) {
+                layer_move(_MOVEMENT);
+            }
+            return false;
         case KC_MAKE:
             if (record->event.pressed) {
-                SEND_STRING("make boardsource/lulu/rp2040:artboard");
+                SEND_STRING("qmk compile -kb boardsource/lulu/rp2040 -km artboard");
                 tap_code(KC_ENT);
             }
             return false;
