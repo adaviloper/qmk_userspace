@@ -157,24 +157,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    uint16_t highest_layer = get_highest_layer(layer_state|default_layer_state);
     if (index == 0) { // Encoder on master side
-        if (highest_layer == _ART) {
+        if (encoder_state == ENCODER_BRUSH_SIZE) {
             if (clockwise) {
                 tap_code(KC_LBRC);
             } else {
                 tap_code(KC_RBRC);
             }
-        }
-        else {
+        } else if (encoder_state == ENCODER_CANVAS_ROTATE) {
             if (clockwise) {
-                tap_code(KC_KB_VOLUME_DOWN);
+                tap_code(VU_ROTR);
             } else {
-                tap_code(KC_KB_VOLUME_UP);
+                tap_code(VU_ROTL);
             }
         }
     }
     else if (index == 1) { // Encoder on slave side
     }
-    return true;
+
+    return false;
 }
