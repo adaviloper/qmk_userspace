@@ -35,9 +35,11 @@
 #define TP_CWHL G(S(KC_W))
 #define TP_CINT G(A(KC_W))
 
-// Brush Size Palette
-#define BS_INC KC_LBRC
-#define BS_DEC KC_RBRC
+// Brush Palette
+#define BS_SINC KC_LBRC
+#define BS_SDEC KC_RBRC
+#define BS_OINC G(KC_LBRC)
+#define BS_ODEC G(KC_RBRC)
 
 // Sub-Tool Palette
 #define NXT_TOOL KC_DOT
@@ -65,6 +67,7 @@ enum layers {
 enum encoder_state_t {
     ENCODER_BRUSH_SIZE = 0,
     ENCODER_CANVAS_ROTATE,
+    ENCODER_OPACITY,
     ENCODER_MAX_COUNT,
 };
 
@@ -180,15 +183,21 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { // Encoder on master side
         if (encoder_state == ENCODER_BRUSH_SIZE) {
             if (clockwise) {
-                tap_code(KC_LBRC);
+                tap_code(BS_SINC);
             } else {
-                tap_code(KC_RBRC);
+                tap_code(BS_SDEC);
+            }
+        } else if (encoder_state == ENCODER_OPACITY) {
+            if (clockwise) {
+                tap_code16(BS_OINC);
+            } else {
+                tap_code16(BS_ODEC);
             }
         } else if (encoder_state == ENCODER_CANVAS_ROTATE) {
             if (clockwise) {
-                tap_code(VU_ROTR);
-            } else {
                 tap_code(VU_ROTL);
+            } else {
+                tap_code(VU_ROTR);
             }
         }
     }
