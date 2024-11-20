@@ -7,7 +7,7 @@ SRC += tap_dance.c
 
 VPATH += keyboards/gboards
 
-ifeq ($(strip $(OLED_ENABLE)), yes)
+ifeq ($(strip $(CASE_MODES_ENABLE)), yes)
   SRC += case_modes.c
   SRC += caps_mock.c
 endif
