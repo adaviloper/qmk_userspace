@@ -66,6 +66,7 @@ enum encoder_state_t {
     ENCODER_MAX_COUNT,
 };
 
+uint8_t current_layer = _TOOLS;
 enum encoder_state_t encoder_state = ENCODER_BRUSH_SIZE;
 
 enum encoder_state_t get_encoder_state(void) {
@@ -132,6 +133,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
     };
     return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case _TOOLS:
+        current_layer = _TOOLS;
+        break;
+    case _MOVEMENT:
+        current_layer = _MOVEMENT;
+        break;
+    case _QWERTY:
+        current_layer = _QWERTY;
+        break;
+    case _ADJUST:
+        current_layer = _ADJUST;
+        break;
+    default: //  for any other layers, or the default layer
+        current_layer = _TOOLS;
+        break;
+    }
+  return state;
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
