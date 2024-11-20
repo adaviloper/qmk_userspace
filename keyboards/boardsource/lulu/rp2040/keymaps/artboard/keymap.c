@@ -1,5 +1,50 @@
 #include QMK_KEYBOARD_H
 
+// Tool Shortcuts
+#define TL_BRSH KC_B // Brush
+#define TL_OPRL KC_D // Operation (Select layer)
+#define TL_ERSE KC_E // Eraser
+#define TL_FILL KC_G // Fill
+#define TL_HAND KC_H // Hand
+#define TL_MLYR KC_K // Move Layer
+#define TL_SLCT KC_L // Select
+#define TL_ZOOM KC_Z // Zoom
+#define TL_BLND KC_J // Blend
+#define TL_OPRO KC_O // Operation (Select object)
+#define TL_PEN KC_P // Pen
+#define TL_ROT KC_R // Rotate
+#define TL_RULE KC_U // Ruler
+
+// Layer
+#define LY_NAME C(A(KC_G)) // Change layer name
+
+// Edit Menu
+#define ED_COPY G(KC_C)
+#define ED_CUT G(KC_X)
+#define ED_PSTE G(KC_V)
+#define ED_REDO G(KC_Y)
+#define ED_UNDO G(KC_Z)
+
+// View Menu
+#define VU_ROTL KC_MINS
+#define VU_ROTR KC_QUOT
+
+// Tool Property Palette
+#define TP_OINC G(KC_LBRC)
+#define TP_ODEC G(KC_RBRC)
+
+// Brush Size Palette
+#define BS_INC KC_LBRC
+#define BS_DEC KC_RBRC
+
+// Sub-Tool Palette
+#define NXT_TOOL KC_DOT
+#define PRV_TOOL KC_COMM
+
+// Drawing Color
+#define CLR_INV KC_X
+#define CLR_TRN KC_C
+
 enum lulu_keycodes {
     KC_MAKE = SAFE_RANGE,
     EN_SWAP,
