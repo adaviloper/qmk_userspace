@@ -22,6 +22,7 @@ enum keycodes {
     W_ALT,
 #ifdef GAMING_ENABLE
     GAMING,
+    G_ALT,
 #endif
     RAISE,
 #ifdef ART_ENABLE

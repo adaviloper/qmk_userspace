@@ -77,6 +77,11 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
             return false;
 #endif
 #ifdef GAMING_ENABLE
+        case G_ALT:
+            if (record->event.pressed) {
+                persistent_default_layer_set(1UL<<_TYPING_PRACTICE);
+            }
+            return false;
         case GAMING:
             if (record->event.pressed) {
                 persistent_default_layer_set(1UL<<_GAMING);

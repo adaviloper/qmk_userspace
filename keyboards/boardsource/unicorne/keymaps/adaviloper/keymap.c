@@ -59,6 +59,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______, _______, _______,    _______, _______, _______
     ),
 #ifdef GAMING_ENABLE
+    [_TYPING_PRACTICE] = LAYOUT_unicorne_wrapper(
+        KC_TAB,  _________________ALT_L1____________________,    _________________ALT_R1____________________, _______,
+        KC_LCTL, _________________ALT_L2____________________,    _________________ALT_R2____________________, _______,
+        KC_LSFT, _________________ALT_L3____________________,    _________________ALT_R3____________________, _______,
+                                   _______, _______, _______,    _______, _______, _______
+    ),
     [_GAMING] = LAYOUT_unicorne_wrapper(
         KC_TAB,  _________________GAMING_L1_________________,    _________________GAMING_R1_________________, _______,
         KC_LCTL, _________________GAMING_L2_________________,    _________________GAMING_R2_________________, _______,
@@ -120,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_ADJUST] = LAYOUT_unicorne_wrapper(
         XXXXXXX, MAC,     WINDOWS, GAMING,  ART,     XXXXXXX,    QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, M_ALT,   W_ALT,   XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI,
+        XXXXXXX, M_ALT,   W_ALT,   G_ALT,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, RGB_M_R, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,
                                    QK_BOOT, _______, _______,    _______, _______, QK_BOOT
     )

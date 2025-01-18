@@ -4,6 +4,7 @@ enum layers {
   _WINDOWS,
   _WINDOWS_ALT,
 #ifdef GAMING_ENABLE
+  _TYPING_PRACTICE,
   _GAMING,
   _GAMING2,
 #endif
