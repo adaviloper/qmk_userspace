@@ -8,12 +8,16 @@
 #define TL_HAND KC_H // Hand
 #define TL_MLYR KC_K // Move Layer
 #define TL_SLCT KC_L // Select
-#define TL_ZOOM KC_Z // Zoom
+#define TL_LSSO KC_M // Lasso
+#define TL_ZOOM A(KC_SPC) // Zoom
 #define TL_BLND KC_J // Blend
 #define TL_OPRO KC_O // Operation (Select object)
 #define TL_PEN KC_P // Pen
 #define TL_ROT KC_R // Rotate
 #define TL_RULE KC_U // Ruler
+#define TL_FLPH C(A(KC_H)) // Flip Horizontal
+#define TL_FLPV C(A(KC_V)) // Flip Vertical
+
 
 // Layer
 #define LY_NEW G(S(KC_N)) // Change layer name
@@ -93,7 +97,7 @@ void increment_encoder_state(void) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_TOOLS] = LAYOUT_wrapper(
-        KC_ESC,  NU_LAYR, KC_F14,  KC_F15,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_ESC,  NU_LAYR, TL_FLPH, TL_FLPV,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_LALT, TL_OPRL, KC_W,    TL_ERSE, TL_HAND, KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
         KC_LSFT, TP_CWHL, TL_SLCT, TL_MLYR, TL_PEN,  TL_FILL,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LCTL, TL_ZOOM, CLR_INV, CLR_TRN, TP_CINT, TL_BRSH, EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
@@ -102,9 +106,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOVEMENT] = LAYOUT_wrapper(
         TOOLS,   KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-        LY_NAME, TL_BLND, KC_W,    KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
+        LY_NAME, TL_BLND, TL_LSSO, KC_E,    KC_R,    KC_T,                        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_NO,
         _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
+        _______, ED_UNDO, KC_X,    KC_C,    KC_V,    KC_B,    EN_SWAP,   XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_HYPR),
                                    XXXXXXX, XXXXXXX, KC_SPC,  XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 
@@ -142,7 +146,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MOVE:
             if (record->event.pressed) {
-                layer_move(_MOVEMENT);
+                layer_on(_MOVEMENT);
+            } else {
+                layer_off(_MOVEMENT);
             }
             return false;
         case KC_ENT:
@@ -221,3 +227,25 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
     return false;
 }
+
+#ifdef RGB_MATRIX_ENABLE
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case _TOOLS:
+            rgb_matrix_set_color_all(138, 12, 201);
+            break;
+        case _MOVEMENT:
+            rgb_matrix_set_color_all(41, 109, 204);
+            break;
+        case _QWERTY:
+            rgb_matrix_set_color_all(204, 41, 68);
+            break;
+        case _ADJUST:
+            rgb_matrix_set_color_all(255, 0, 255);
+            break;
+        default:
+            break;
+    }
+    return false;
+}
+#endif
