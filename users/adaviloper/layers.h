@@ -3,6 +3,7 @@ enum layers {
   _MAC_ALT,
   _WINDOWS,
   _WINDOWS_ALT,
+  _LINUX,
 #ifdef GAMING_ENABLE
   _TYPING_PRACTICE,
   _GAMING,

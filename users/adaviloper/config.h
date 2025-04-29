@@ -5,3 +5,5 @@
         #define RGBLIGHT_LAYERS
     #endif
 #endif
+
+#define LAYER_STATE_32BIT

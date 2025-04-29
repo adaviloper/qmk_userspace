@@ -20,6 +20,7 @@ enum keycodes {
     M_ALT,
     WINDOWS,
     W_ALT,
+    LINUX,
 #ifdef GAMING_ENABLE
     GAMING,
     G_ALT,

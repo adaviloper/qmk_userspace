@@ -17,12 +17,16 @@ bool process_vi_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
         case VI_BWRD:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 register_vi_keycode(A(KC_LEFT), record);
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                register_vi_keycode(A(KC_LEFT), record);
             } else {
                 register_vi_keycode(C(KC_LEFT), record);
             }
             return false;
         case VI_WORD:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                register_vi_keycode(A(KC_RGHT), record);
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
                 register_vi_keycode(A(KC_RGHT), record);
             } else {
                 register_vi_keycode(C(KC_RGHT), record);
@@ -31,12 +35,16 @@ bool process_vi_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
         case VI_BSPC:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 register_vi_keycode(A(KC_BSPC), record);
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                register_vi_keycode(A(KC_BSPC), record);
             } else {
                 register_vi_keycode(C(KC_BSPC), record);
             }
             return false;
         case VI_DEL:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                register_vi_keycode(C(KC_DEL), record);
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
                 register_vi_keycode(C(KC_DEL), record);
             } else {
                 register_vi_keycode(C(KC_DEL), record);

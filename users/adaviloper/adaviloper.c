@@ -52,6 +52,11 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 persistent_default_layer_set(1UL<<_WINDOWS_ALT);
             }
             return false;
+        case LINUX:
+            if (record->event.pressed) {
+                persistent_default_layer_set(1UL<<_LINUX);
+            }
+            return false;
         case LT_REP:
             if (record->tap.count > 0) {  // Key is being tapped.
                 if (record->event.pressed) {

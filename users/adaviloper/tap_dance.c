@@ -169,12 +169,16 @@ void tab_new_old_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 tap_code16(G(KC_T));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(G(KC_T));
             } else {
                 tap_code16(C(KC_T));
             }
             break;
         case TD_DOUBLE_TAP:
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(S(KC_T)));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
                 tap_code16(G(S(KC_T)));
             } else {
                 tap_code16(C(S(KC_T)));
