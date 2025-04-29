@@ -48,9 +48,7 @@ enum keycodes {
     CST_CSE,
 #endif
 #ifdef GIT_ENABLE
-    GIT_ACP,
     GIT_BCK,
-    GIT_GCP,
     GIT_HRD,
     GIT_RST,
     GIT_SFT,
