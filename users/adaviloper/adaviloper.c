@@ -16,6 +16,9 @@ void persistent_default_layer_set(uint16_t default_layer) {
     layer_state = default_layer;
 }
 
+
+
+
 // Initialize variable holding the binary
 // representation of active modifiers.
 uint8_t mod_state;
@@ -23,7 +26,6 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
     // Store the current modifier state in the variable for later reference
 #ifdef CASE_MODES_ENABLE
     if (!process_case_modes(keycode, record)) { return false; }
-    if (!process_caps_mock_adaviloper(keycode, record)) { return false; };
 #endif
 #ifdef GIT_ENABLE
     if (!process_git_adaviloper(keycode, record)) { return false; }
@@ -193,9 +195,10 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
             // Task/gn XXXXX/some description
             return false;
 #ifdef CASE_MODES_ENABLE
-        case KC_MOCK:
+        // ij_lij_lij
+        case CAP_WRD:
             if (record->event.pressed) {
-                /* enable_caps_mock(); */
+                toggle_caps_word();
             }
             return false;
         case CAMEL:
@@ -211,11 +214,6 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
         case KEBAB:
             if (record->event.pressed) {
                 enable_xcase_with(KC_MINS);
-            }
-            return false;
-        case CST_CSE:
-            if (record->event.pressed) {
-                enable_xcase();
             }
             return false;
 #endif // CASE_MODES_ENABLE

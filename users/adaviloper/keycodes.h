@@ -45,7 +45,6 @@ enum keycodes {
     CAMEL,
     SNAKE,
     KEBAB,
-    CST_CSE,
 #endif
 #ifdef GIT_ENABLE
     GIT_BCK,

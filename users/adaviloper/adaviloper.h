@@ -6,6 +6,8 @@
 #include "combos.h"
 #include "keycodes.h"
 #include "tap_dance.h"
+#include "case_modes.h"
+// #include "caps_word_mode.h"
 #include "os_commands.h"
 #include "vi_commands.h"
 #include "repeat_keys.h"

@@ -9,7 +9,7 @@ VPATH += keyboards/gboards
 
 ifeq ($(strip $(CASE_MODES_ENABLE)), yes)
   SRC += case_modes.c
-  SRC += caps_mock.c
+  # SRC += caps_word_mode.c
 endif
 
 ifdef GIT_ENABLE
