@@ -19,6 +19,11 @@ const rgblight_segment_t PROGMEM windows_rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {MAIN_UNDERGLOW_START,  UNDERGLOW_LED_PER_HALF, 140, 255, 255},
     {SPLIT_UNDERGLOW_START, UNDERGLOW_LED_PER_HALF, 140, 255, 255}
 );
+const rgblight_segment_t PROGMEM linux_rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//    {0, 7, 140, 255, 255},
+    {MAIN_UNDERGLOW_START,  UNDERGLOW_LED_PER_HALF, 240, 255, 255},
+    {SPLIT_UNDERGLOW_START, UNDERGLOW_LED_PER_HALF, 240, 255, 255}
+);
 #ifdef GAMING_ENABLE
 const rgblight_segment_t PROGMEM gaming_rgb_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {MAIN_UNDERGLOW_START,  UNDERGLOW_LED_PER_HALF, 85, 255, 255},
@@ -42,6 +47,7 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     [_MAC_ALT] = mac_rgb_layer,    // Overrides caps lock layer
     [_WINDOWS] = windows_rgb_layer,    // Overrides other layers
     [_WINDOWS_ALT] = windows_rgb_layer,    // Overrides other layers
+    [_LINUX] = linux_rgb_layer,    // Overrides other layers
 #ifdef GAMING_ENABLE
     [_GAMING] = gaming_rgb_layer,     // Overrides other layers
 #endif
@@ -57,6 +63,7 @@ void keyboard_post_init_kb(void) {
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(_MAC, layer_state_cmp(state, _MAC));
     rgblight_set_layer_state(_WINDOWS, layer_state_cmp(state, _WINDOWS));
+    rgblight_set_layer_state(_LINUX, layer_state_cmp(state, _LINUX));
     rgblight_set_layer_state(_SYMBOL, layer_state_cmp(state, _SYMBOL));
     rgblight_set_layer_state(_RAISE, layer_state_cmp(state, _RAISE));
 #ifdef GAMING_ENABLE
