@@ -232,6 +232,18 @@ bool process_record_user_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING("::");
             }
             return false;
+        case LT_SMES:
+            if (
+                record->event.pressed == true &&
+                record->tap.count == 1 &&
+                get_oneshot_mods()
+            ) {
+                clear_oneshot_mods();
+
+                return false;
+            }
+
+            return true;
     }
     if (!process_repeat_key(keycode, record, RE_PEAT)) { return false; }
     return true;
