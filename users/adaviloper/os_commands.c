@@ -31,7 +31,7 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                     tap_code16(G(KC_C));
                 } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(G(KC_C));
+                    tap_code16(C(KC_C));
                 } else {
                     tap_code16(C(KC_C));
                 }
