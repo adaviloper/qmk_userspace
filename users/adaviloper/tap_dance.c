@@ -208,3 +208,55 @@ void tab_new_old_reset(tap_dance_state_t *state, void *user_data) {
     }
     tab_new_old_tap_state.state = TD_NONE;
 }
+
+// Create an instance of 'td_tap_t' for the 'x' tap dance.
+static td_tap_t close_tab_window_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void close_tab_window_finished(tap_dance_state_t *state, void *user_data) {
+    close_tab_window_tap_state.state = cur_dance(state, false);
+    switch (close_tab_window_tap_state.state) {
+        case TD_SINGLE_TAP:
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_W));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(C(KC_W));
+            } else {
+                tap_code16(C(KC_W));
+            }
+            break;
+        case TD_SINGLE_HOLD:
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                // tap_code16(G(S(KC_W)));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(C(KC_W)));
+            } else {
+                // tap_code16(C(S(KC_W)));
+            }
+            break;
+        default:
+            register_code(KC_NO);
+            break;
+    }
+}
+
+void close_tab_window_reset(tap_dance_state_t *state, void *user_data) {
+    switch (close_tab_window_tap_state.state) {
+        case TD_SINGLE_TAP:
+            break;
+        case TD_SINGLE_HOLD:
+            break;
+        case TD_DOUBLE_TAP:
+             break;
+        case TD_DOUBLE_HOLD:
+            break;
+        case TD_TRIPLE_TAP:
+            break;
+        case TD_NONE:
+        default:
+             unregister_code(KC_NO);
+    }
+    close_tab_window_tap_state.state = TD_NONE;
+}

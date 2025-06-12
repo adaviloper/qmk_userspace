@@ -8,6 +8,7 @@ tap_dance_action_t tap_dance_actions[] = {
     [ENT_ESC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ent_esc_finished, ent_esc_reset),
     [HYPR_MEH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, hyper_meh_finished, hyper_meh_reset),
     [TAB_NEW_OLD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, tab_new_old_finished, tab_new_old_reset),
+    [TAB_TAB_WINDOW] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, close_tab_window_finished, close_tab_window_reset),
 };
 
 void persistent_default_layer_set(uint16_t default_layer) {
@@ -15,8 +16,6 @@ void persistent_default_layer_set(uint16_t default_layer) {
     default_layer_set(default_layer);
     layer_state = default_layer;
 }
-
-
 
 
 // Initialize variable holding the binary

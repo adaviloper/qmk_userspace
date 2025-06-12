@@ -53,7 +53,7 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                     tap_code16(G(KC_TAB));
                 } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(G(KC_TAB));
+                    tap_code16(A(KC_TAB));
                 } else {
                     tap_code16(A(KC_TAB));
                 }
@@ -64,7 +64,7 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                     tap_code16(G(KC_TILD));
                 } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(C(KC_TILD));
+                    tap_code16(G(KC_TILD));
                 } else {
                     tap_code16(G(S(KC_TILD)));
                 }
@@ -75,7 +75,7 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                     tap_code16(G(A(KC_I)));
                 } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(C(A(KC_I)));
+                    tap_code16(C(S(KC_E)));
                 } else {
                     tap_code16(C(KC_F));
                 }
@@ -170,7 +170,7 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                     tap_code16(G(S(C(KC_4))));
                 } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    // tap_code16(G(S(C(KC_4))));
+                    tap_code16(G(S(C(KC_4))));
                 } else {
                     tap_code16(G(S(KC_S)));
                 }

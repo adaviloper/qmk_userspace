@@ -26,11 +26,13 @@ enum {
     CTL_NAV,
     DBL_DOT,
     TAB_NEW_OLD,
+    TAB_TAB_WINDOW,
 };
 
 #define TD_FNCT TD(FN_CTL)
 #define TD_DBDT TD(DBL_DOT)
 #define TD_TAB  TD(TAB_NEW_OLD)
+#define TD_CTAB  TD(TAB_TAB_WINDOW)
 
 td_state_t cur_dance(tap_dance_state_t *state, bool interruptable);
 
@@ -45,4 +47,7 @@ void hyper_meh_reset(tap_dance_state_t *state, void *user_data);
 
 void tab_new_old_finished(tap_dance_state_t *state, void *user_data);
 void tab_new_old_reset(tap_dance_state_t *state, void *user_data);
+
+void close_tab_window_finished(tap_dance_state_t *state, void *user_data);
+void close_tab_window_reset(tap_dance_state_t *state, void *user_data);
 
