@@ -45,6 +45,8 @@ static bool caps_word_on = false;
 
 // enum to keep track of the xcase state
 static enum xcase_state xcase_state = XCASE_OFF;
+// bool to keep track of whether the delimiter is a modifer
+static bool xcase_is_modifier;
 // the keycode of the xcase delimiter
 static uint16_t xcase_delimiter;
 // the number of keys to the last delimiter
@@ -100,21 +102,41 @@ void enable_xcase(void) {
 // Enable xcase with the specified delimiter
 void enable_xcase_with(uint16_t delimiter) {
     xcase_state = XCASE_ON;
+
+    switch (delimiter) {
+        case KC_MEH:
+        case KC_HYPR:
+        case KC_LCTL:
+        case KC_RCTL:
+        case KC_LSFT:
+        case KC_RSFT:
+        case KC_LALT:
+        case KC_RALT:
+        case KC_LGUI:
+        case KC_RGUI:
+            xcase_is_modifier = true;
+            break;
+        default:
+            break;
+    }
+
     xcase_delimiter = delimiter;
+
     distance_to_last_delim = -1;
 }
 
 // Disable xcase
 void disable_xcase(void) {
     xcase_state = XCASE_OFF;
+    xcase_is_modifier = false;
 }
 
 // Place the current xcase delimiter
 static void place_delimiter(void) {
-    if (IS_OSM(xcase_delimiter)) {
+    if (IS_OSM(xcase_delimiter) || xcase_is_modifier) {
         // apparently set_oneshot_mods() is dumb and doesn't deal with handedness for you
-        uint8_t mods = xcase_delimiter & 0x10 ? (xcase_delimiter & 0x0F) << 4 : xcase_delimiter & 0xFF;
-        set_oneshot_mods(mods);
+        // uint8_t mods = xcase_delimiter & 0x10 ? (xcase_delimiter & 0x0F) << 4 : xcase_delimiter & 0xFF;
+        set_oneshot_mods(MOD_BIT(KC_LSFT));
     } else {
         tap_code16(xcase_delimiter);
     }
@@ -122,7 +144,7 @@ static void place_delimiter(void) {
 
 // Removes a delimiter, used for double tap space exit
 static void remove_delimiter(void) {
-    if (IS_OSM(xcase_delimiter)) {
+    if (IS_OSM(xcase_delimiter) || xcase_is_modifier) {
         clear_oneshot_mods();
     } else {
         tap_code(KC_BSPC);
