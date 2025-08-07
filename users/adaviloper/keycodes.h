@@ -37,8 +37,6 @@ enum keycodes {
 #endif
     ADJUST,
     PR_TLE1,
-    PR_TLE2,
-    PR_TLE3,
 #ifdef CASE_MODES_ENABLE
     KC_MOCK,
     CAP_WRD,
@@ -67,6 +65,8 @@ enum keycodes {
     OS_SAVE,
     OS_CTAB,
     OS_PSTE,
+    OS_CLNE,
+    OS_CBLK,
     OS_CUT,
     OS_REDO,
     OS_SBSP,
