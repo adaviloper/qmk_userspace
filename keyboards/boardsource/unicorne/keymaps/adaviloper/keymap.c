@@ -2,6 +2,8 @@
 
 enum unicorne_keycodes {
     KC_MAKE = NEW_SAFE_RANGE,
+    KC_PASS,
+    KC_WKPW,
 };
 
 #define LAYOUT_unicorne_wrapper(...) LAYOUT_split_3x6_3(__VA_ARGS__)
@@ -131,8 +133,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______, _______, _______,    _______, KC_MAKE, _______
     ),
     [_ADJUST] = LAYOUT_unicorne_wrapper(
-        XXXXXXX, MAC,     WINDOWS, GAMING,  LINUX,   XXXXXXX,    QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, M_ALT,   W_ALT,   G_ALT,   XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI,
+        XXXXXXX, MAC,     WINDOWS, LINUX,   GAMING,  XXXXXXX,    QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, KC_WKPW, KC_PASS,
+        XXXXXXX, M_ALT,   W_ALT,   XXXXXXX, G_ALT,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, RGB_M_R, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,
                                    QK_BOOT, _______, _______,    _______, _______, QK_BOOT
     )
@@ -154,16 +156,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch(get_highest_layer(layer_state|default_layer_state)) {
         case _MAC:
-            rgb_matrix_set_color_all(202, 215, 235);
+            rgb_matrix_set_color_all(255, 255, 255);
             break;
         case _WINDOWS:
-            rgb_matrix_set_color_all(41, 109, 204);
+            rgb_matrix_set_color_all(41, 41, 255);
+            break;
+        case _LINUX:
+            rgb_matrix_set_color_all(204, 41, 204);
             break;
         case _GAMING:
-            rgb_matrix_set_color_all(204, 41, 68);
+            rgb_matrix_set_color_all(41, 255, 41);
             break;
         case _GAMING2:
-            rgb_matrix_set_color_all(255, 0, 255);
+            rgb_matrix_set_color_all(41, 255, 41);
             break;
         case _ART:
         case _ART2:
