@@ -260,3 +260,128 @@ void close_tab_window_reset(tap_dance_state_t *state, void *user_data) {
     }
     close_tab_window_tap_state.state = TD_NONE;
 }
+
+// Create an instance of 'td_tap_t' for the 'x' tap dance.
+static td_tap_t paste_code_block_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void paste_code_block_finished(tap_dance_state_t *state, void *user_data) {
+    paste_code_block_tap_state.state = cur_dance(state, false);
+    switch (paste_code_block_tap_state.state) {
+        case TD_SINGLE_TAP:
+            SEND_STRING("`");
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_V));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(KC_INS));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            SEND_STRING("`");
+            break;
+        case TD_SINGLE_HOLD:
+            SEND_STRING("```");
+            tap_code16(S(KC_ENT));
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_V));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(KC_INS));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            tap_code16(S(KC_ENT));
+            SEND_STRING("```");
+            break;
+        case TD_DOUBLE_TAP:
+            SEND_STRING("```");
+            tap_code16(S(KC_ENT));
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_V));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(KC_INS));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            break;
+        default:
+            register_code(KC_NO);
+            break;
+    }
+}
+
+void paste_code_block_reset(tap_dance_state_t *state, void *user_data) {
+    switch (paste_code_block_tap_state.state) {
+        case TD_SINGLE_TAP:
+            break;
+        case TD_SINGLE_HOLD:
+            break;
+        case TD_DOUBLE_TAP:
+             break;
+        case TD_DOUBLE_HOLD:
+            break;
+        case TD_TRIPLE_TAP:
+            break;
+        case TD_NONE:
+        default:
+             unregister_code(KC_NO);
+    }
+    paste_code_block_tap_state.state = TD_NONE;
+}
+
+// Create an instance of 'td_tap_t' for the 'x' tap dance.
+static td_tap_t paste_quote_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void paste_quote_finished(tap_dance_state_t *state, void *user_data) {
+    paste_quote_tap_state.state = cur_dance(state, false);
+    switch (paste_quote_tap_state.state) {
+        case TD_SINGLE_TAP:
+            SEND_STRING("'");
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_V));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(KC_INS));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            SEND_STRING("'");
+            break;
+        case TD_SINGLE_HOLD:
+            SEND_STRING("\"");
+            if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
+                tap_code16(G(KC_V));
+            } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
+                tap_code16(S(KC_INS));
+            } else {
+                tap_code16(C(KC_V));
+            }
+            SEND_STRING("\"");
+            break;
+        default:
+            register_code(KC_NO);
+            break;
+    }
+}
+
+void paste_quote_reset(tap_dance_state_t *state, void *user_data) {
+    switch (paste_quote_tap_state.state) {
+        case TD_SINGLE_TAP:
+            break;
+        case TD_SINGLE_HOLD:
+            break;
+        case TD_DOUBLE_TAP:
+             break;
+        case TD_DOUBLE_HOLD:
+            break;
+        case TD_TRIPLE_TAP:
+            break;
+        case TD_NONE:
+        default:
+             unregister_code(KC_NO);
+    }
+    paste_quote_tap_state.state = TD_NONE;
+}

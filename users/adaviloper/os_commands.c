@@ -136,34 +136,6 @@ bool process_os_commands_adaviloper(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-        case OS_CLNE:
-            if (record->event.pressed) {
-                SEND_STRING("`");
-                if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
-                    tap_code16(G(KC_V));
-                } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(S(KC_INS));
-                } else {
-                    tap_code16(C(KC_V));
-                }
-                SEND_STRING("`");
-            }
-            return false;
-        case OS_CBLK:
-            if (record->event.pressed) {
-                SEND_STRING("```");
-                tap_code16(S(KC_ENT));
-                if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
-                    tap_code16(G(KC_V));
-                } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
-                    tap_code16(S(KC_INS));
-                } else {
-                    tap_code16(C(KC_V));
-                }
-                tap_code16(S(KC_ENT));
-                SEND_STRING("```");
-            }
-            return false;
         case OS_CUT:
             if (record->event.pressed) {
                 if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {

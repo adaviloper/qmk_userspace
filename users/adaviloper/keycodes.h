@@ -65,8 +65,6 @@ enum keycodes {
     OS_SAVE,
     OS_CTAB,
     OS_PSTE,
-    OS_CLNE,
-    OS_CBLK,
     OS_CUT,
     OS_REDO,
     OS_SBSP,

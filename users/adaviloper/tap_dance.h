@@ -27,12 +27,16 @@ enum {
     DBL_DOT,
     TAB_NEW_OLD,
     TAB_TAB_WINDOW,
+    PASTE_CODE_BLOCK,
+    PASTE_QUOTE,
 };
 
 #define TD_FNCT TD(FN_CTL)
 #define TD_DBDT TD(DBL_DOT)
 #define TD_TAB  TD(TAB_NEW_OLD)
-#define TD_CTAB  TD(TAB_TAB_WINDOW)
+#define TD_CTAB TD(TAB_TAB_WINDOW)
+#define TD_CBLK TD(PASTE_CODE_BLOCK)
+#define TD_PQTE TD(PASTE_QUOTE)
 
 td_state_t cur_dance(tap_dance_state_t *state, bool interruptable);
 
@@ -50,4 +54,10 @@ void tab_new_old_reset(tap_dance_state_t *state, void *user_data);
 
 void close_tab_window_finished(tap_dance_state_t *state, void *user_data);
 void close_tab_window_reset(tap_dance_state_t *state, void *user_data);
+
+void paste_code_block_finished(tap_dance_state_t *state, void *user_data);
+void paste_code_block_reset(tap_dance_state_t *state, void *user_data);
+
+void paste_quote_finished(tap_dance_state_t *state, void *user_data);
+void paste_quote_reset(tap_dance_state_t *state, void *user_data);
 
