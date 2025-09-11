@@ -296,7 +296,7 @@ void paste_code_block_finished(tap_dance_state_t *state, void *user_data) {
             break;
         case TD_DOUBLE_TAP:
             SEND_STRING("```");
-            tap_code16(S(KC_ENT));
+            wait_ms(100);
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 tap_code16(G(KC_V));
             } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
