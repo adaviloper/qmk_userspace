@@ -380,6 +380,8 @@ bool get_repeat_key_eligible(uint16_t keycode, keyrecord_t* record) {
     case KC_LCTL ... KC_RGUI:
     case KC_HYPR:
     case KC_MEH:
+    case KC_PASS:
+    case KC_WKPW:
       // Ignore one-shot keys.
 #ifndef NO_ACTION_ONESHOT
     case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:

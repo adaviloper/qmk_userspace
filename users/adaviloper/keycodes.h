@@ -44,6 +44,8 @@ enum keycodes {
     SNAKE,
     KEBAB,
 #endif
+    KC_PASS,
+    KC_WKPW,
 #ifdef GIT_ENABLE
     GIT_BCK,
     GIT_HRD,

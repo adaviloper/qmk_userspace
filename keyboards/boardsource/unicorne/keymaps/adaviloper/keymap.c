@@ -2,8 +2,6 @@
 
 enum unicorne_keycodes {
     KC_MAKE = NEW_SAFE_RANGE,
-    KC_PASS,
-    KC_WKPW,
 };
 
 #define LAYOUT_unicorne_wrapper(...) LAYOUT_split_3x6_3(__VA_ARGS__)
