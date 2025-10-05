@@ -283,6 +283,7 @@ void paste_code_block_finished(tap_dance_state_t *state, void *user_data) {
             break;
         case TD_SINGLE_HOLD:
             SEND_STRING("```");
+            wait_ms(100);
             tap_code16(S(KC_ENT));
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 tap_code16(G(KC_V));
@@ -292,6 +293,7 @@ void paste_code_block_finished(tap_dance_state_t *state, void *user_data) {
                 tap_code16(C(KC_V));
             }
             tap_code16(S(KC_ENT));
+            wait_ms(100);
             SEND_STRING("```");
             break;
         case TD_DOUBLE_TAP:
@@ -341,6 +343,7 @@ void paste_quote_finished(tap_dance_state_t *state, void *user_data) {
     switch (paste_quote_tap_state.state) {
         case TD_SINGLE_TAP:
             SEND_STRING("'");
+            wait_ms(100);
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 tap_code16(G(KC_V));
             } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
@@ -348,10 +351,12 @@ void paste_quote_finished(tap_dance_state_t *state, void *user_data) {
             } else {
                 tap_code16(C(KC_V));
             }
+            wait_ms(100);
             SEND_STRING("'");
             break;
         case TD_SINGLE_HOLD:
             SEND_STRING("\"");
+            wait_ms(100);
             if (eeconfig_read_default_layer() == 1UL<<_MAC || eeconfig_read_default_layer() == 1UL<<_MAC_ALT) {
                 tap_code16(G(KC_V));
             } else if (eeconfig_read_default_layer() == 1UL<<_LINUX) {
@@ -359,6 +364,7 @@ void paste_quote_finished(tap_dance_state_t *state, void *user_data) {
             } else {
                 tap_code16(C(KC_V));
             }
+            wait_ms(100);
             SEND_STRING("\"");
             break;
         default:
