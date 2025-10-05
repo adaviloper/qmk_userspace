@@ -106,11 +106,11 @@
 
 #define _________________SYSTEM_L0_________________         _______, _______, _______, _______, _______
 #define _________________SYSTEM_L1_________________         _______, TD_CTAB, OS_SPEC, OS_RFRS, TD_TAB
-#define _________________SYSTEM_L2_________________         OS_ALL,  OS_SAVE, OS_URL,  OS_FIND, _______
+#define _________________SYSTEM_L2_________________         OS_ALL,  OS_SAVE, OS_URL,  OS_FIND, TD_PQTE
 #define _________________SYSTEM_L3_________________         OS_UNDO, OS_CUT,  OS_COPY, OS_PSTE, TD_CBLK
 
 #define _________________SYSTEM_R0_________________         _______, _______, _______, _______, _______
-#define _________________SYSTEM_R1_________________         OS_REDO, TD_PQTE, _______, _______, _______
+#define _________________SYSTEM_R1_________________         OS_REDO, _______, _______, _______, _______
 #define _________________SYSTEM_R2_________________         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
 #define _________________SYSTEM_R3_________________         _______, CAP_WRD, CAMEL,   SNAKE,   KEBAB
 
